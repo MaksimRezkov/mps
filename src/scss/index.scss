@@ -1,0 +1,12 @@
+@import 'variables';
+
+.header {
+    display: flex;
+    width: 100vw;
+    height: 60px;
+    background-color: $blue;
+}
+
+.footer_mps {
+    color: $blue;
+}
