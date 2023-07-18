@@ -1,0 +1,44 @@
+@import '../variables.scss';
+
+.call-form {
+    position: absolute;
+    bottom: 0;
+    transform: translate(0, 100%);
+    padding: 16px 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    color: #FFF;
+    border: 1px solid #b2b2b2;
+    border-radius: 4px;
+    background-color: transparent;
+
+    opacity: 0;
+    transition: all .3s linear;
+
+    &__blur-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #000000d0;
+        filter: blur(3px);
+        z-index: -1;
+    }
+
+    &__title {
+        font-size: 24px;
+    }
+
+    &__item {
+        width: 100%;
+    }
+
+    &__visible {
+        opacity: 1;
+        transform: translate(0, 50%);
+    }
+}

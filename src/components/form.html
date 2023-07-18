@@ -1,0 +1,26 @@
+<form class="call-form">
+    <div class="call-form__blur-bg"></div>
+
+    <span class="call-form__title">Закажите звонок у наших специалистов</span>
+
+    <div class="call-form__item">
+        @@include('./input.html', {
+            "id": "fio",
+            "placeholder": "Ваше ФИО"
+        })
+    </div>
+
+    <div class="call-form__item">
+        @@include('./input.html', {
+            "id": "organization",
+            "placeholder": "Ваша организация"
+        })
+    </div>
+
+    <div class="call-form__item">
+        @@include('./input.html', {
+            "id": "phone",
+            "placeholder": "Номер телефона"
+        })
+    </div>
+</form>

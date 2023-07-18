@@ -1,0 +1,26 @@
+.input-wrapp {
+    
+}
+
+.custom-input {
+    width: 100%;
+    padding: 5px 3px;
+    border: none;
+    border-bottom: 2px solid #ffffff;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    color: #ffffff;
+    
+    &::placeholder {
+        transition: font-size .2s ease-out;
+        font-size: 16px;
+        color: #ffffff;
+    }
+}
+
+.input-focused {
+    &::placeholder {
+        font-size: 14px;
+    }
+}

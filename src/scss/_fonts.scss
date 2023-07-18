@@ -1,0 +1,35 @@
+@import './base/mixins';
+
+// @include font-face("SanFrancisco", "SanFranciscoLight", 400);
+// @include font-face("SanFrancisco", "SanFranciscoRegular", 600);
+// @include font-face("SanFrancisco", "SanFranciscoSemibold", 900);
+
+@font-face {
+    font-family: "SanFrancisco";
+    src:
+    url('../fonts/SFUIDisplay-Light.woff2') format('woff2'),
+    url('../fonts/SFUIDisplay-Light.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: wrap;
+}
+
+// @font-face {
+//     font-family: "SanFrancisco";
+//     src: local("SanFranciscoRegular"),
+//     url('../../fonts/SanFranciscoRegular.woff2') format('woff2'),
+//     url('../../fonts/SanFranciscoRegular.woff') format('woff');
+//     font-weight: 600;
+//     font-style: normal;
+//     font-display: swap;
+// }
+
+// @font-face {
+//     font-family: "SanFrancisco";
+//     src: local("SanFranciscoSemibold"),
+//     url('../../fonts/SanFranciscoSemibold.woff2') format('woff2'),
+//     url('../../fonts/SanFranciscoSemibold.woff') format('woff');
+//     font-weight: 900;
+//     font-style: normal;
+//     font-display: swap;
+// }

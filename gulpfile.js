@@ -82,13 +82,14 @@ function libs_style(done) {
 
 /** ===============JS=================== */
 function scripts_dev() {
-    return src(['src/components/**/*.js', 'src/js/*.js'])
+    return src(['src/js/**/*.js'])
+		.pipe(include())
 		.pipe(map.init())
 		.pipe(uglify())
         .pipe(babel({
 			presets: ['@babel/env']
 		}))
-		.pipe(concat('main.min.js'))
+		.pipe(concat('index.min.js'))
 		.pipe(map.write('../sourcemaps'))
 		.pipe(dest('dist/js/'))
         .pipe(bs.stream())
@@ -110,7 +111,7 @@ function scripts_libs(done) {
 
 /** ===============HTML=================== */
 function html() {
-	return src(['src/**/*.html', '!src/components/html'])
+	return src(['src/**/*.html', '!src/components/**/*.html'])
 		.pipe(include())
 		.pipe(dest('dist'))
         .pipe(bs.stream())
@@ -147,7 +148,7 @@ function rastr() {
 }
 
 function webp() {
-	return src('dist/img/**/*.+(png|jpg|jpeg)')
+	return src('src/img/**/*.+(png|jpg|jpeg)')
 		.pipe(plumber())
 		.pipe(changed('dist/img', {
 			extension: '.webp'
@@ -187,14 +188,7 @@ function svg_sprite() {
 				}
 			]
 		}))
-		.pipe(sprite({
-			mode: {
-				stack: {
-					sprite: '../sprite.svg'
-				}
-			}
-		}))
-		.pipe(dest('src/img'))
+		.pipe(dest('dist/svg'))
 }
 /** ==============images================== */
 
@@ -247,6 +241,15 @@ function fonts(done) {
 	})
 	done();
 }
+
+function fontsComplete(done) {
+	src('src/fonts/**/*.woff2')
+		.pipe(dest('dist/fonts'))
+
+	src('src/fonts/**/*.woff')
+		.pipe(dest('dist/fonts'))
+		done();
+}
 /** ==============fonts================== */
 
 /** ==============local server================== */
@@ -271,7 +274,7 @@ function bs_html() {
 		logLevel: 'info',
 		logConnections: true,
 		logFileChanges: true,
-		open: true
+		open: false
 	})
 }
 /** ==============local server================== */
@@ -309,7 +312,6 @@ function watching() {
 exports.clear = clear;
 exports.style = style;
 exports.libs_style = libs_style;
-// exports.build_js = build_js;
 exports.scripts_libs = scripts_libs;
 exports.scripts_dev = scripts_dev;
 exports.html = html;
@@ -319,22 +321,41 @@ exports.svg_css = svg_css;
 exports.svg_sprite = svg_sprite;
 exports.ttf = ttf;
 exports.fonts = fonts;
+exports.fontsComplete = fontsComplete;
 exports.bs_html = bs_html;
 exports.watching = watching;
 // exports.deploy = deploy;
 
+// exports.build = parallel(
+//     libs_style,
+//     style,
+//     scripts_libs,
+//     scripts_dev,
+//     rastr,
+//     webp,
+//     svg_css,
+//     svg_sprite,
+//     ttf,
+//     fonts,
+// 	fontsComplete,
+//     html,
+//     bs_html,
+//     watching
+// );
+
 exports.build = parallel(
     libs_style,
     style,
+    svg_css,
     scripts_libs,
     scripts_dev,
-    rastr,
-    webp,
-    svg_css,
-    svg_sprite,
     ttf,
     fonts,
+	fontsComplete,
+    svg_sprite,
+    webp,
+    rastr,
     html,
+    watching,
     bs_html,
-    watching
 );
