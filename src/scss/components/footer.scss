@@ -1,1 +1,18 @@
 @import '../variables.scss';
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $padding_page_block;
+    background-color: #29008a;
+    color: #FFF;
+
+    &-content {
+        &__contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+}
