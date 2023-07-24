@@ -2,3 +2,10 @@
     width: 600px;
     height: 300px;
 }
+
+.swiper-wrapper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+}

@@ -20,6 +20,23 @@ a {
   color: #666;
 }
 
+textarea {
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-track {
+        border: 1px solid #FFF;
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.314);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgb(149, 149, 149);
+        border-radius: 3px;
+        border: 1px solid rgb(0, 0, 0);
+        cursor: pointer;
+    }
+}
+
 .svg-item {
     visibility: hidden;
 }
@@ -30,17 +47,6 @@ a {
     word-wrap: break-word;
     font-family: 'SanFrancisco', sans-serif;
     line-height: 28px;
-}
-
-.test {
-    width: 100%;
-    height: 200px;
-    background-color: #29008a;
-    opacity: 0;
-    transition: opacity .5s linear;
-    &_visible {
-        opacity: 1;
-    }
 }
 
 .intersector {
@@ -60,6 +66,7 @@ a {
 .main {
     position: relative;
     width: 100%;
+    min-height: 100vh;
     padding-top: $height_header;
     padding-bottom: $height_footer;
 
@@ -78,13 +85,17 @@ a {
     }
 
     &__content {
-        padding-top: 170px;
+        padding-top: 245px;
         padding-bottom: 20px;
         background-image: url('../img/main-background.webp');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
+
+        &_services {
+            padding-top: 30px;
+        }
     }
 }
 

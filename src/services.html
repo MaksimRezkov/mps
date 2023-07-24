@@ -13,28 +13,100 @@
         @@include('./components/header.html')
         
         <main class="main">
-            <h1>Services</h1>
-            <div class="container">
-                <!-- Slider main container -->
-                <div class="swiper">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide">Slide 1</div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
+            <section class="main__content main__content_services">
+                <div class="content__services container">
+                    <div class="services__service-card">
+                        <div class="service-card__service-img">
+                            <div class="service-img__request-panel">
+                                <div class="open-form-btn__wrapp" id="industrial_safety_expertise">
+                                    @@include('./components/mpsBtn.html', {
+                                        "btnText": "Заказать звонок",
+                                        "btnClass": "request-panel__open-form-btn",
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card__service-description">
+                            Экспертиза промышленной безопасности (экспертиза технических устройств)
+                        </div>
                     </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-                
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                
-                    <!-- If we need scrollbar -->
-                    <div class="swiper-scrollbar"></div>
+                    <div class="services__service-card">
+                        <div class="service-card__service-img">
+                            <div class="service-img__request-panel">
+                                <div class="open-form-btn__wrapp" id="declaration_technical_devices">
+                                    @@include('./components/mpsBtn.html', {
+                                        "btnText": "Заказать звонок",
+                                        "btnClass": "request-panel__open-form-btn",
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card__service-description">
+                            Декларирование технических устройств
+                        </div>
+                    </div>
+                    <div class="services__service-card">
+                        <div class="service-card__service-img">
+                            <div class="service-img__request-panel">
+                                <div class="open-form-btn__wrapp" id="pressure_device_docs">
+                                    @@include('./components/mpsBtn.html', {
+                                        "btnText": "Заказать звонок",
+                                        "btnClass": "request-panel__open-form-btn",
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card__service-description">
+                            Документация на оборудование, работающее под избыточным давлением
+                        </div>
+                    </div>
+                    <div class="services__service-card">
+                        <div class="service-card__service-img">
+                            <div class="service-img__request-panel">
+                                <div class="open-form-btn__wrapp" id="registration_equipment">
+                                    @@include('./components/mpsBtn.html', {
+                                        "btnText": "Заказать звонок",
+                                        "btnClass": "request-panel__open-form-btn",
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card__service-description">
+                            Постановка оборудование на учет
+                        </div>
+                    </div>
+                    <div class="services__service-card">
+                        <div class="service-card__service-img">
+                            <div class="service-img__request-panel">
+                                <div class="open-form-btn__wrapp" id="registration_OPO">
+                                    @@include('./components/mpsBtn.html', {
+                                        "btnText": "Заказать звонок",
+                                        "btnClass": "request-panel__open-form-btn",
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card__service-description">
+                            Регистрация ОПО
+                        </div>
+                    </div>
+                    <div class="services__service-card">
+                        <div class="service-card__service-img">
+                            <div class="service-img__request-panel">
+                                <div class="open-form-btn__wrapp" id="industrial_safety_attestation">
+                                    @@include('./components/mpsBtn.html', {
+                                        "btnText": "Заказать звонок",
+                                        "btnClass": "request-panel__open-form-btn",
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card__service-description">
+                            Аттестация по промышленной безопасности
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </main>
 
         <footer class="footer">
@@ -46,6 +118,14 @@
                 </div>
             </div>
         </footer>
+
+        <div class="fixed-form-bg">
+            <div class="fixed-form-wrapp">
+                @@include('./components/form.html', {
+                    "isAddCloseBtn": true
+                })
+            </div>
+        </div>
     </div>
 
     <script defer src="./js/index_services.min.js" ></script>

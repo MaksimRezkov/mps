@@ -1,8 +1,6 @@
-const openFormBtn = document.querySelector('.open-form__btn');
+const openFormBtnList = document.querySelectorAll('.open-form__btn');
 const fixedFormBg = document.querySelector('.fixed-form-bg'); // обёртка над скрываемой по кнопке формой
 const staticFormWrapp = document.querySelector('.static-form-wrapp'); // обёртка над постоянно включённой формой
-import { testing } from "../utils/test";
-testing();
 
 export const formStaticInputValues = {
     name: 'formStaticInputValues',
@@ -17,7 +15,9 @@ const formFixedInputValues = {
     phone: null,
 };
 
-addListenersFormInput(staticFormWrapp, formStaticInputValues);
+if (staticFormWrapp) {
+    addListenersFormInput(staticFormWrapp, formStaticInputValues);
+}
 
 if (fixedFormBg) {
     fixedFormBg.addEventListener('click', (e) => {
@@ -26,13 +26,16 @@ if (fixedFormBg) {
     }, { capture: false });
 }
 
-if (openFormBtn) {
-    openFormBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        fixedFormBg.classList.add('fixed-form-bg_visible');
-        addListenersFormInput(fixedFormBg, formFixedInputValues);
-        addListenersFormCloseBtn();
-    });
+if (openFormBtnList?.length) {
+    for (let i = 0; i < openFormBtnList.length; i++) {
+        const openFormBtn = openFormBtnList[i];
+        openFormBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fixedFormBg.classList.add('fixed-form-bg_visible');
+            addListenersFormInput(fixedFormBg, formFixedInputValues);
+            addListenersFormCloseBtn();
+        });
+    }
 }
 
 function addListenersFormInput(form, targetFormValues) {

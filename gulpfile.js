@@ -151,6 +151,30 @@ function scripts_page_services() {
         .pipe(bs.stream())
 }
 
+function scripts_page_implemented_projects() {
+	return rollup({
+		// Point to the entry file
+		input: 'src/js/pages/implemented_projects.js',
+		plugins: [babel(), commonjs(), nodeResolve()],
+		cache,
+		output: {
+			// Output bundle is intended for use in browsers
+			// (iife = "Immediately Invoked Function Expression")
+			format: 'iife',
+			// Show source code when debugging in browser
+			sourcemap: true
+		  }
+		})
+		.on('bundle', function(bundle) {
+			cache = bundle
+		})
+		.pipe(source('index_implemented_projects.min.js'))
+		.pipe(buffer())
+		.pipe(map.init())
+		.pipe(map.write('../sourcemaps'))
+		.pipe(dest('dist/js/'))
+        .pipe(bs.stream())
+}
 
 
 // function scripts_libs(done) {
@@ -342,6 +366,7 @@ function watching() {
 	watch('src/**/*.scss', parallel('style'));
 	watch('src/**/*.js', parallel('scripts_dev'));
 	watch('src/**/*.js', parallel('scripts_page_services'));
+	watch('src/**/*.js', parallel('scripts_page_implemented_projects'));
 	watch('src/**/*.json', parallel('html'));
 	watch('src/img/**/*.+(png|jpg|jpeg|gif|svg|ico)', parallel('rastr'));
 	watch('dist/img/**/*.+(png|jpg|jpeg)', parallel('webp'));
@@ -374,6 +399,7 @@ exports.libs_style = libs_style;
 // exports.scripts_libs = scripts_libs;
 exports.scripts_dev = scripts_dev;
 exports.scripts_page_services = scripts_page_services;
+exports.scripts_page_implemented_projects = scripts_page_implemented_projects;
 exports.html = html;
 exports.rastr = rastr;
 exports.webp = webp;
@@ -410,6 +436,7 @@ exports.build = parallel(
     // scripts_libs,
     scripts_dev,
 	scripts_page_services,
+	scripts_page_implemented_projects,
     ttf,
     fonts,
 	fontsComplete,
