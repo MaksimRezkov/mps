@@ -9,18 +9,19 @@
     border-bottom: 2px solid #ffffff;
     background-color: transparent;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
     color: #ffffff;
     
     &::placeholder {
         transition: font-size .2s ease-out;
         font-size: 16px;
         color: #ffffff;
+        font-family: 'SanFrancisco-UltraLight', sans-serif;
     }
 }
 
 .input-focused {
     &::placeholder {
-        font-size: 14px;
+        font-size: 13px;
     }
 }

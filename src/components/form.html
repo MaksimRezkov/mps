@@ -3,24 +3,45 @@
 
     <span class="call-form__title">Закажите звонок у наших специалистов</span>
 
-    <div class="call-form__item">
-        @@include('./input.html', {
-            "id": "fio",
-            "placeholder": "Ваше ФИО"
-        })
+    @@if(isAddCloseBtn) {
+        <div class="close-form">
+            <div class="close-form__btn"></div>
+        </div>
+    }
+
+    <div class="call-form__form-inputs">
+        <div class="form-inputs__item">
+            @@include('./input.html', {
+                "id": "fio",
+                "placeholder": "Ваше ФИО",
+                "type": "input"
+            })
+        </div>
+    
+        <div class="form-inputs__item">
+            @@include('./input.html', {
+                "id": "organization",
+                "placeholder": "Ваша организация",
+                "type": "input"
+            })
+        </div>
+    
+        <div class="form-inputs__item">
+            @@include('./input.html', {
+                "id": "phone",
+                "placeholder": "Номер телефона",
+                "type": "phone"
+            })
+        </div>
     </div>
 
-    <div class="call-form__item">
-        @@include('./input.html', {
-            "id": "organization",
-            "placeholder": "Ваша организация"
-        })
+    <div class="call-form__btns">
+        <div>
+            @@include('./mpsBtn.html', {
+                "btnText": "Отправить",
+                "btnClass": "call-form__send-btn"
+            })
+        </div>
     </div>
 
-    <div class="call-form__item">
-        @@include('./input.html', {
-            "id": "phone",
-            "placeholder": "Номер телефона"
-        })
-    </div>
 </form>

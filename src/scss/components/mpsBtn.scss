@@ -1,0 +1,14 @@
+.mpsBtn {
+    padding: 20px 50px;
+    font-size: 22px;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s linear;
+
+    &:hover {
+        padding: 25px 55px;
+        background-color: #000000a1;
+        color: #FFF;
+    }
+}

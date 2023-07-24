@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-dev": "gulp clear && gulp build"
@@ -13,6 +14,10 @@
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/stream": "^3.0.0",
     "browser-sync": "^2.23.7",
     "chalk": "^4.1.1",
     "del": "^4.1.0",
@@ -29,15 +34,27 @@
     "gulp-sass": "^5.1.0",
     "gulp-sass-bulk-importer": "^3.0.2",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-strip-import-export": "^1.0.0",
     "gulp-svg-css-pseudo": "^1.0.4",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-svgmin": "^3.0.0",
     "gulp-ttf2woff": "^1.1.1",
     "gulp-ttftowoff2": "^1.0.1",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify-es": "^3.0.0",
     "gulp-webp": "^4.0.1",
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-pngquant": "^9.0.2",
-    "sass": "^1.63.6"
+    "rollup": "^3.26.3",
+    "rollup-plugin-multi-input": "^1.4.1",
+    "sass": "^1.63.6",
+    "typescript": "^5.1.6",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-named": "^1.1.0",
+    "vinyl-source-stream": "^2.0.0",
+    "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "swiper": "^10.0.4"
   }
 }

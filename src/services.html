@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/libs.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="root">
+        
+        @@include('./components/header.html')
+        
+        <main class="main">
+            <h1>Services</h1>
+            <div class="container">
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                
+                    <!-- If we need scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content container">
+                <div class="footer-content__contacts">
+                    <span>ООО «МосПромСервис» </span>
+                    <span>г. Москва, ул. Профсоюзная, д. 23.</span>
+                    <span>info@mosps.ru</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script defer src="./js/index_services.min.js" ></script>
+</body>
+</html>

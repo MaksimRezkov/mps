@@ -25,9 +25,22 @@ a {
 }
 
 .root {
+    position: relative;
+    min-height: 100vh;
     word-wrap: break-word;
-    font-family: sans-serif;
+    font-family: 'SanFrancisco', sans-serif;
     line-height: 28px;
+}
+
+.test {
+    width: 100%;
+    height: 200px;
+    background-color: #29008a;
+    opacity: 0;
+    transition: opacity .5s linear;
+    &_visible {
+        opacity: 1;
+    }
 }
 
 .intersector {
@@ -47,6 +60,8 @@ a {
 .main {
     position: relative;
     width: 100%;
+    padding-top: $height_header;
+    padding-bottom: $height_footer;
 
     &__title {
         position: relative;
@@ -59,6 +74,7 @@ a {
         background-size: cover;
         background-position: center 65px;
         background-attachment: fixed;
+        font-family: 'SanFrancisco-UltraLight', sans-serif;
     }
 
     &__content {
@@ -73,22 +89,17 @@ a {
 }
 
 .title {
-    &__blur {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: #000000a1;
-    }
-
     &__text {
         z-index: 1;
         color: #fff;
         font-size: 30px;
         line-height: 36px;
         width: 80%;
+        max-width: 900px;
+        padding: 30px;
         text-align: center;
+        border: 1px solid #FFF;
+        background-color: #00000061;
 
         opacity: 0;
         transform: translate(0, -100%);
@@ -148,37 +159,95 @@ a {
 
 .about {
     &__info {
+        position: relative;
         display: flex;
         align-items: stretch;
         text-align: start;
-        border: 1px solid #29008a;
+        background-image: url('../img/industrial-safety.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-color: #000000a1;
+        color: #FFF;
+        font-family: 'SanFrancisco-UltraLight', sans-serif;
     }
 
     &__our-criteries {
+        position: relative;
         width: 100%;
-        text-align: start;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        padding: 30px 0;
+        background-image: url('../img/about-criteries.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #FFFFFF;
     }
     &__recomendations {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         text-align: left;
     }
 }
 
+.our-criteries {
+    &__title {
+        text-align: center;
+        padding: 20px 30px;
+        border: 1px solid #FFF;
+        z-index: 1;
+        font-family: 'SanFrancisco-UltraLight', sans-serif;
+    }
+
+    &__items {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1;
+    }
+}
+
+.criteries-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .info {
+    &__activity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 30px 0;
+    }
     &__icon {
         width: 100%;
         height: 100%;
+        transition: filter 0.3s ease-out;
+        transition-delay: .5s;
+        filter: drop-shadow(0px -3px 12px #FFF) invert(0%);
         &-wrapper {
             width: 30%;
-            height: 300px;
+            max-width: 300px;
+            height: 200px;
         }
     }
     &__description {
+        text-align: center;
+        z-index: 1;
         
         &-wrapper {
             display: flex;
             align-items: center;
             width: 70%;
-            background-color: #29008a;
             color: #FFF;
             padding-left: 20px;
         }
@@ -203,10 +272,8 @@ a {
         width: 100%;
         height: 100%;
         &-wrapper {
-            width: 14%;
             height: 80px;
             padding: 3px;
-            background-color: #29008a;
         }
     }
 
@@ -225,8 +292,65 @@ a {
     }
 }
 
-.map-wrapper {
+.recomendations {
+    &__rec-points {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.rec-points {
+    &__point {
+        width: 300px;
+        height: 300px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0px 0px 7px #000;
+    }
+}
+
+.open-form {
     width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blur-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000a1;
+    z-index: 0;
+}
+
+.scroll-up-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 5px #FFF) invert(0%);
+    &_visible {
+        display: block;
+    }
+    &__icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.map-wrapper {
     height: 500px;
 }
 .map {
