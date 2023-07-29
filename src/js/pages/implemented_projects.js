@@ -3,6 +3,7 @@ import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 const swiper = new Swiper('.swiper', {
+  loop: true,
   modules: [Navigation, Pagination],
   speed: 1000,
   spaceBetween: 20,
