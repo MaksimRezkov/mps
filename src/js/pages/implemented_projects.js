@@ -1,3 +1,4 @@
+import '../componetns/header.js';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 

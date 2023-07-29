@@ -61,16 +61,14 @@
     }
 }
 
-.content__services .request-panel {
-    &__open-form-btn {
-        padding: 7px 9px;
-        font-size: 16px;
-        background-color: #ffffff;
-        filter: drop-shadow(0px 0px 5px);
-        &:hover {
-            padding: 9px 11px;
-            background-color: #000000a1;
-            filter: none;
-        }
+.content__services .open-form__btn {
+    padding: 7px 9px;
+    font-size: 16px;
+    background-color: #ffffff;
+    filter: drop-shadow(0px 0px 5px);
+    &:hover {
+        padding: 9px 11px;
+        background-color: #000000a1;
+        filter: none;
     }
 }
