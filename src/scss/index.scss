@@ -61,6 +61,12 @@ textarea {
     width: 60%;
     max-width: 1024px;
     margin: auto;
+
+    &_projects {
+        height: 90%;
+        max-width: 80%;
+        width: 80%;
+    }
 }
 
 .main {
@@ -74,6 +80,15 @@ textarea {
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 100vh;
+    }
+
+    &_bg {
+        background-image: url('../img/main-background.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
     }
 
     &__title {
@@ -93,11 +108,6 @@ textarea {
     &__content {
         padding-top: 245px;
         padding-bottom: 20px;
-        background-image: url('../img/main-background.webp');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
 
         &_services {
             padding-top: 30px;
@@ -109,14 +119,13 @@ textarea {
     &__text {
         z-index: 1;
         color: #fff;
-        font-size: 30px;
-        line-height: 36px;
+        font-size: 32px;
+        line-height: 40px;
         width: 80%;
         max-width: 900px;
         padding: 30px;
         text-align: center;
-        border: 1px solid #FFF;
-        background-color: #00000061;
+        font-weight: 600;
 
         opacity: 0;
         transform: translate(0, -100%);

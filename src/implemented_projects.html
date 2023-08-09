@@ -12,8 +12,8 @@
         
         @@include('./components/header.html')
         
-        <main class="main main_projects">
-            <div class="container">
+        <main class="main main_projects main_bg">
+            <div class="container container_projects">
                 <!-- Slider main container -->
                 <div class="swiper">
                     <!-- Additional required wrapper -->
@@ -21,38 +21,54 @@
                         <!-- Slides -->
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/RC_City_Bay.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ЖК City Bay</div>
                         </div>
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/RC_Garden_Neighborhoods.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ЖК Садовые Кварталы</div>
                         </div>
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/RC_Poclonnaya_9.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ЖК Поклонная 9</div>
                         </div>
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/RC_Wings.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ЖК Крылья</div>
                         </div>
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/Redesign_Tretyakovka.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">Реконструкция Третьяковской Галереи</div>
                         </div>
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/RC_Heart_Capital.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ЖК Сердце Столицы</div>
                         </div>
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/IKB.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ИКБ №1</div>
                         </div>
                         <div class="swiper-slide">
                             <img class="slide_img" src="../img/RC_Lucky.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ЖК Lucky</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img class="slide_img" src="../img/RC_Move_Tushino.webp"/>
+                            <div class="swiper-slide__title" data-swiper-parallax="-300">ЖК Движение Тушино</div>
                         </div>
                     </div>
                     <!-- If we need pagination -->
                     <div class="swiper-pagination"></div>
                 
                     <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button swiper-button-prev">
+                        <div class="swiper-button__bg"></div>
+                    </div>
+                    <div class="swiper-button swiper-button-next">
+                        <div class="swiper-button__bg"></div>
+                    </div>
                 
                     <!-- If we need scrollbar -->
-                    <div class="swiper-scrollbar"></div>
+                    <!-- <div class="swiper-scrollbar"></div> -->
                 </div>
             </div>
         </main>
