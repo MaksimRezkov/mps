@@ -75,6 +75,8 @@ textarea {
     min-height: 100vh;
     padding-top: $height_header;
     padding-bottom: $height_footer;
+    letter-spacing: 2px;
+    font-weight: 600;
 
     &_projects {
         display: flex;
@@ -111,6 +113,11 @@ textarea {
 
         &_services {
             padding-top: 30px;
+            background-image: url('../img/main-background.webp');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
     }
 }
@@ -197,6 +204,7 @@ textarea {
         background-color: #000000a1;
         color: #FFF;
         font-family: 'SanFrancisco-UltraLight', sans-serif;
+        font-size: 24px;
     }
 
     &__our-criteries {
@@ -218,8 +226,9 @@ textarea {
     &__recomendations {
         display: flex;
         flex-direction: column;
-        gap: 20px;
         text-align: left;
+    }
+    &__services {
     }
 }
 
@@ -230,6 +239,8 @@ textarea {
         border: 1px solid #FFF;
         z-index: 1;
         font-family: 'SanFrancisco-UltraLight', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
     }
 
     &__items {
@@ -319,23 +330,56 @@ textarea {
 }
 
 .recomendations {
+    &__rec-header {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        background-color: #000;
+        color: #FFF;
+        padding: 20px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
     &__rec-points {
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
     }
 }
 
-.rec-points {
-    &__point {
-        width: 300px;
-        height: 300px;
-        padding: 0 20px;
+.rec-header {
+    &__icon {
+        width: 100px;
+        height: 50px;
         display: flex;
         align-items: center;
-        justify-content: center;
+    }
+    &__text {
+        line-height: 28px;
+    }
+}
+
+.rec-points {
+    &__rec-point {
+        padding: 20px;
+        padding-left: 35px;
+        display: flex;
+        align-items: center;
         text-align: center;
-        box-shadow: 0px 0px 7px #000;
+        gap: 20px;
+        box-shadow: 0px 6px 7px #000;
+        &:nth-last-child(1) {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+}
+
+.rec-point {
+    &__icon {
+        width: 35px;
+        height: 35px;
     }
 }
 

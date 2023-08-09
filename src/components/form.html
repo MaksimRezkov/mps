@@ -1,12 +1,15 @@
 <form class="call-form" name="@@name">
     <div class="call-form__blur-bg"></div>
-
-    <span class="call-form__title">Закажите звонок у наших специалистов</span>
-
+    
+    
     @@if(isAddCloseBtn) {
+        <span class="call-form__title">Пожалуйста, заполните информацию о Вас</span>
         <div class="close-form">
             <div class="close-form__btn"></div>
         </div>
+    }
+    @@if(!isAddCloseBtn) {
+        <span class="call-form__title">Закажите звонок у наших специалистов</span>
     }
 
     <div class="call-form__form-inputs">
