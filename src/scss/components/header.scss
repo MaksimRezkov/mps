@@ -20,6 +20,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @media(max-width: 1024px) {
+            width: 80%;
+        }
+        @media(max-width: 628px) {
+            width: 95%;
+        }
     }
 }
 
@@ -28,10 +34,80 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        @media(max-width: 1124px) {
+            display: none;
+        }
+
+        &_mobile {
+            position: absolute;
+            transform: translate(0, 100%);
+            overflow: hidden;
+            transition: height .3s linear;
+            height: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: #FFF;
+            font-size: 22px;
+            font-weight: 600;
+            &_visible {
+                height: 50vh;
+                overflow: auto;
+                @media(max-width: 900px) {
+                    height: 100vh;
+                }
+            }
+            @media(min-width: 1125px) {
+                display: none;
+            }
+        }
+    }
+    &__burger {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        @media(min-width: 1125px) {
+            display: none;
+        }
     }
     &__logo {
         width: 160px;
     }
+}
+
+.burger {
+    &__elem {
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        transition: all .3s linear;
+        &-top, &-bottom {
+            position: absolute;
+            left: 0;
+        }
+        &-top {
+            top: 0;
+        }
+        &-bottom {
+            bottom: 0;
+        }
+    }
+}
+
+.burger-open .burger__elem-top {
+    top: 50%;
+    transform: translate(0, -50%) rotate(45deg);
+}
+.burger-open .burger__elem-bottom {
+    bottom: 50%;
+    transform: translate(0, 50%) rotate(-45deg);
+}
+.burger-open .burger__elem-mid {
+    transform: translate(-100%, 0);
+    opacity: 0;
 }
 
 .nav-links {
@@ -43,6 +119,21 @@
             }
         }
     }
+
+    &_mobile-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        width: 60%;
+        margin: auto;
+        @media(max-width: 1024px) {
+            width: 80%;
+        }
+        @media(max-width: 628px) {
+            width: 95%;
+        }
+    }
 }
 
 .link-item {
@@ -52,6 +143,9 @@
         padding-top: 2px;
         background-color: $color-primary;
         transition: width .2s ease-in;
+        @media(max-width: 1124px) {
+            display: none;
+        }
     }
 
     &__contacts {
@@ -86,6 +180,10 @@
 
         &__item {
             border-bottom: 1px solid #000;
+            @media(max-width: 1124px) {
+                margin-bottom: 20px;
+                border: none;
+            }
         }
     }
 }
