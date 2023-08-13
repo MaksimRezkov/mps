@@ -52,6 +52,12 @@ function checkAboutCriteries() {
 
 let isBtnScrollVisisble = window.scrollY >= titleSectionHeight;
 function checkScrollUpBtn() {
+    if (document.documentElement.clientWidth < 1024) {
+        scrollUpBtn.classList.remove('scroll-up-btn_visible');
+        isBtnScrollVisisble = false;
+        return;
+    }
+
     const isSetVisible = window.scrollY >= titleSectionHeight; // нужно сделать видимым
     if (isSetVisible) {
         !isBtnScrollVisisble && (scrollUpBtn.classList.add('scroll-up-btn_visible'));

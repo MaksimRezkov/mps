@@ -106,20 +106,21 @@ textarea {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url('../img/back-ground.webp');
+        // background-image: url('../img/back-ground.webp');
+        background-image: url('../img/industrial-safety.webp');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center 65px;
         background-attachment: fixed;
         font-family: 'SanFrancisco-UltraLight', sans-serif;
 
-        @media(max-width: 1124px) {
-            // align-items: flex-start;
+        @media(max-width: 628px) {
+            align-items: flex-start;
         }
     }
 
     &__content {
-        padding-top: 245px;
+        padding-top: 260px;
         padding-bottom: 20px;
 
         &_services {
@@ -131,7 +132,7 @@ textarea {
             background-attachment: fixed;
         }
 
-        @media(max-width: 480px) {
+        @media(max-width: 816px) {
             padding-top: 75px;
         }
     }
@@ -142,7 +143,7 @@ textarea {
         z-index: 1;
         color: #fff;
         font-size: 32px;
-        line-height: 40px;
+        line-height: 50px;
         width: 80%;
         max-width: 900px;
         padding: 30px;
@@ -159,10 +160,15 @@ textarea {
             transform: translate(0, 0);
         }
 
+        @media(max-width: 900px) {
+            // font-size: 24px;
+        }
         @media(max-width: 816px) {
             width: 90%;
-            font-size: 24px;
             padding: 30px 0 0 0;
+        }
+        @media(max-width: 480px) {
+            font-size: 20px;
         }
     }
 }
@@ -217,7 +223,8 @@ textarea {
         display: flex;
         align-items: stretch;
         text-align: start;
-        background-image: url('../img/industrial-safety.webp');
+        // background-image: url('../img/industrial-safety.webp');
+        background-image: url('../img/back-ground.webp');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -226,6 +233,10 @@ textarea {
         color: #FFF;
         font-family: 'SanFrancisco-UltraLight', sans-serif;
         font-size: 24px;
+
+        @media(max-width: 480px) {
+            font-size: 20px;
+        }
     }
 
     &__our-criteries {
@@ -249,6 +260,12 @@ textarea {
         flex-direction: column;
         text-align: left;
     }
+    &__services {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-top: 55px;
+    }
 }
 
 .our-criteries {
@@ -260,6 +277,10 @@ textarea {
         font-family: 'SanFrancisco-UltraLight', sans-serif;
         font-size: 24px;
         font-weight: 600;
+
+        @media (max-width: 480px) {
+            font-size: 20px;
+        }
     }
 
     &__items {
@@ -301,6 +322,10 @@ textarea {
             width: 30%;
             max-width: 300px;
             height: 200px;
+
+            @media(max-width: 480px) {
+                height: 115px;
+            }
         }
     }
     &__description {
@@ -376,12 +401,83 @@ textarea {
     }
 }
 
+.services {
+    &__service-header {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        background-color: #000;
+        color: #FFF;
+        padding: 20px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    &__service-points {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+.service-header {
+    &__icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+
+        @media(max-width: 628px) {
+            display: none;
+        }
+    }
+    &__text {
+        line-height: 28px;
+        width: 85%;
+
+        @media(max-width: 628px) {
+            width: 100%;
+        }
+    }
+}
+
+.service-points {
+    &__service-point {
+        padding: 20px;
+        padding-left: 35px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0px 6px 7px #000;
+        &:nth-last-child(1) {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        @media(max-width: 816px) {
+            padding: 10px;
+            padding-left: 25px;
+        }
+    }
+}
+
+.service-point {
+    &__icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
 .rec-header {
     &__icon {
         width: 100px;
         height: 50px;
         display: flex;
         align-items: center;
+
+        @media(max-width: 628px) {
+            display: none;
+        }
     }
     &__text {
         line-height: 28px;
@@ -402,6 +498,7 @@ textarea {
         }
         @media(max-width: 816px) {
             padding: 10px;
+            padding-left: 25px;
         }
     }
 }
@@ -410,6 +507,10 @@ textarea {
     &__icon {
         width: 35px;
         height: 35px;
+
+        @media(max-width: 628px) {
+            display: none;
+        }
     }
 }
 
