@@ -114,7 +114,7 @@ textarea {
         background-attachment: fixed;
         font-family: 'SanFrancisco-UltraLight', sans-serif;
 
-        @media(max-width: 628px) {
+        @media(max-height: 754px) {
             align-items: flex-start;
         }
     }
@@ -161,7 +161,7 @@ textarea {
         }
 
         @media(max-width: 900px) {
-            // font-size: 24px;
+            font-size: 24px;
         }
         @media(max-width: 816px) {
             width: 90%;
@@ -277,6 +277,7 @@ textarea {
         font-family: 'SanFrancisco-UltraLight', sans-serif;
         font-size: 24px;
         font-weight: 600;
+        margin: 0 10px 0 10px;
 
         @media (max-width: 480px) {
             font-size: 20px;
