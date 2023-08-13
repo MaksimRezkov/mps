@@ -169,6 +169,7 @@ textarea {
         }
         @media(max-width: 480px) {
             font-size: 20px;
+            line-height: 34px;
         }
     }
 }
@@ -458,6 +459,9 @@ textarea {
             padding: 10px;
             padding-left: 25px;
         }
+        @media(max-width: 628px) {
+            font-size: 18px;
+        }
     }
 }
 
@@ -501,13 +505,16 @@ textarea {
             padding: 10px;
             padding-left: 25px;
         }
+        @media(max-width: 628px) {
+            font-size: 18px;
+        }
     }
 }
 
 .rec-point {
     &__icon {
-        width: 35px;
-        height: 35px;
+        width: 32px;
+        height: 32px;
 
         @media(max-width: 628px) {
             display: none;
