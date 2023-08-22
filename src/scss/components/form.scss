@@ -179,3 +179,11 @@
         color: #000;
     }
 }
+
+.send_btn_loader {
+    display: none;
+}
+
+.btn_sending .send_btn_loader {
+    display: inline;
+}

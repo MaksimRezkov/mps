@@ -191,6 +191,15 @@ function scripts_page_implemented_projects() {
 // }
 /** ===============JS=================== */
 
+/** ===============PHP=================== */
+function php() {
+	return src('src/**/*.php')
+		.pipe(include())
+		.pipe(dest('dist'))
+    .pipe(bs.stream())
+}
+/** ===============PHP=================== */
+
 /** ===============HTML=================== */
 function html() {
 	return src(['src/**/*.html', '!src/components/**/*.html'])
@@ -368,6 +377,7 @@ function watching() {
 	watch('src/**/*.js', parallel('scripts_page_services'));
 	watch('src/**/*.js', parallel('scripts_page_implemented_projects'));
 	watch('src/**/*.json', parallel('html'));
+	watch('src/**/*.php', parallel('php'));
 	watch('src/img/**/*.+(png|jpg|jpeg|gif|svg|ico)', parallel('rastr'));
 	watch('dist/img/**/*.+(png|jpg|jpeg)', parallel('webp'));
 	watch('src/svg/css/**/*.svg', series('svg_css', 'style'));
@@ -410,6 +420,7 @@ exports.fonts = fonts;
 exports.fontsComplete = fontsComplete;
 exports.bs_html = bs_html;
 exports.watching = watching;
+exports.php = php;
 // exports.deploy = deploy;
 
 // exports.build = parallel(
@@ -437,6 +448,7 @@ exports.build = parallel(
     scripts_dev,
 	scripts_page_services,
 	scripts_page_implemented_projects,
+	php,
     ttf,
     fonts,
 	fontsComplete,

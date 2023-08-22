@@ -1,3 +1,4 @@
+import '../libs/inputmask.min.js';
 const openFormBtnList = document.querySelectorAll('.open-form__btn');
 const fixedFormBg = document.querySelector('.fixed-form-bg'); // обёртка над скрываемой по кнопке формой
 const staticFormWrapp = document.querySelector('.static-form-wrapp'); // обёртка над постоянно включённой формой
@@ -19,6 +20,8 @@ let isFormFixedOpen = false;
 
 if (staticFormWrapp) {
     addListenersFormInput(staticFormWrapp, formStaticInputValues);
+    initInputMask(staticFormWrapp);
+    addFormSendBtnListeners(staticFormWrapp, formStaticInputValues);
 }
 
 if (fixedFormBg) {
@@ -33,13 +36,21 @@ if (openFormBtnList?.length) {
         const openFormBtn = openFormBtnList[i];
         openFormBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            console.log(e.currentTarget.id);
             fixedFormBg.classList.add('fixed-form-bg_visible');
             isFormFixedOpen = true;
             addListenersFormInput(fixedFormBg, formFixedInputValues);
-            addListenersFormCloseBtn();
+            addFormSendBtnListeners(fixedFormBg, formFixedInputValues);
+            addListenersFormCloseBtn(fixedFormBg);
         });
     }
+}
+
+function initInputMask(form) {
+    const phoneInput = form.querySelector('input[type="tel"]');
+    console.log(phoneInput);
+    const inputMask = new Inputmask('+7 (999) 999-99-99');
+    console.log('input mask elem', inputMask);
+    inputMask.mask(phoneInput);
 }
 
 function addListenersFormInput(form, targetFormValues) {
@@ -80,19 +91,34 @@ function toggleListenersFormInput(inputElementsList, isAdd) {
 }
 
 function formCloseBtnHandler() {
-    removeListenersFormCloseBtn();
+    removeListenersFormCloseBtn(fixedFormBg);
     removeListenersFormInput(fixedFormBg);
     fixedFormBg.classList.remove('fixed-form-bg_visible');
     isFormFixedOpen = false;
 }
 
-function addListenersFormCloseBtn() {
-    const closeFormBtn = fixedFormBg.querySelector('.close-form__btn');
+function formSendBtnHandler(e) {
+    e.preventDefault();
+    const targetFormValues = e.target.targetFormValues;
+    console.log('send', targetFormValues);
+
+    e.target.classList.add('btn_sending');
+    fetch('http://jsonplaceholder.typicode.com/posts')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('data', data);
+            e.target.classList.remove('btn_sending');
+            return data;
+        })
+}
+
+function addListenersFormCloseBtn(form) {
+    const closeFormBtn = form.querySelector('.close-form__btn');
     closeFormBtn.addEventListener('click', formCloseBtnHandler);
 }
 
-function removeListenersFormCloseBtn() {
-    const closeFormBtn = fixedFormBg.querySelector('.close-form__btn');
+function removeListenersFormCloseBtn(form) {
+    const closeFormBtn = form.querySelector('.close-form__btn');
     closeFormBtn.removeEventListener('click', formCloseBtnHandler);
 }
 
@@ -118,6 +144,16 @@ function addInputHandlers(inputList, targetFormValues) {
         input.targetFormValues = targetFormValues;
         input.addEventListener('input', formInputHandler);
     }
+}
+
+function addFormSendBtnListeners(form, targetFormValues) {
+    const sendBtn = form.querySelector('.call-form__send-btn');
+    sendBtn.targetFormValues = targetFormValues;
+    sendBtn.addEventListener('click', formSendBtnHandler);
+}
+
+function removeFormSendBtnListeners(sendBtn, fnHandler) {
+    sendBtn.removeEventListener('click', fnHandler);
 }
 
 // document.body.addEventListener('click', () => {

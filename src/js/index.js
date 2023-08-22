@@ -1,3 +1,4 @@
+import './libs/inputmask.min.js';
 import './pages/main.js';
 import './componetns/scroll.js';
 import './componetns/form.js';
