@@ -4,12 +4,35 @@ const burgerBtn = document.querySelector('.navbar__burger');
 const navLinksMobile = document.querySelector('.navbar__nav-links_mobile');
 
 let isContactsPopupOpen = false;
+
+const popupContactsCopyItems = contactsPopup.querySelectorAll('.popup__copy');
+function copyContact(e) {
+    const data = e.currentTarget.dataset.copy;
+    navigator.clipboard.writeText(data);
+    const copyTextItem = e.currentTarget.querySelector('.copy__text');
+    copyTextItem.innerHTML = 'Скопировано';
+    setTimeout(() => {
+        copyTextItem.innerHTML = 'Копировать';
+    }, 2000);
+}
 contactsNavItem.addEventListener('click', (e) => {
     e.stopPropagation();
-    isContactsPopupOpen
-        ? contactsPopup.classList.remove('contacts-popup_visible')
-        : contactsPopup.classList.add('contacts-popup_visible');
-        isContactsPopupOpen = !isContactsPopupOpen;
+    if(isContactsPopupOpen) {
+        popupContactsCopyItems.forEach((copyItem) => {
+            copyItem.removeEventListener('click', copyContact);
+            copyItem.removeEventListener('pointerup', copyContact);
+        });
+        contactsPopup.classList.remove('contacts-popup_visible');
+    } else {
+        contactsPopup.classList.add('contacts-popup_visible');
+        popupContactsCopyItems.forEach((copyItem) => {
+            copyItem.addEventListener('click', copyContact);
+            copyItem.addEventListener('pointerup', copyContact);
+        });
+    }
+
+    isContactsPopupOpen = !isContactsPopupOpen;
+    
 });
 
 let isBurgerOpen = false;
@@ -29,6 +52,10 @@ document.body.addEventListener('click', () => {
         contactsPopup.classList.remove('contacts-popup_visible');
         isContactsPopupOpen = false;
     }
+});
+
+contactsPopup.addEventListener('click', (e) => {
+    e.stopPropagation();
 });
 
 const linksByPathNames = {

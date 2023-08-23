@@ -165,7 +165,7 @@
     &-popup {
         position: absolute;
         top: 100%;
-        width: 238px;
+        width: 280px;
         height: 0;
         padding: 0 15px;
         overflow: hidden;
@@ -190,5 +190,34 @@
                 border: none;
             }
         }
+    }
+}
+
+.popup {
+    &__copy {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+
+        &:hover {
+            .copy__text {
+                display: block;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                padding: 0 3px;
+                border-radius: 6px;
+                border: 2px solid #ffffff;
+                background-color: #000000e1;
+                color: #ffffff;
+                font-weight: 100;
+            }
+        }
+    }
+}
+.copy {
+    &__text {
+        display: none;
     }
 }
