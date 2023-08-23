@@ -30,3 +30,15 @@ document.body.addEventListener('click', () => {
         isContactsPopupOpen = false;
     }
 });
+
+const linksByPathNames = {
+    '/': 'main_page',
+    '/implemented_projects.html': 'implemented_projects',
+};
+
+const pathname = window.location.pathname;
+if (linksByPathNames[pathname]) {
+    const linkItemId = linksByPathNames[pathname];
+    const linkItem = document.querySelector(`#${linkItemId}`);
+    if (linkItem) linkItem.classList.add('nav-links__link-item_active');
+}

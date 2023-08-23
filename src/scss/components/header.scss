@@ -137,6 +137,10 @@
     }
 }
 
+.nav-links__link-item.nav-links__link-item_active .link-item__decorate-line {
+    width: 100%;
+}
+
 .link-item {
     &__decorate-line {
         height: 2px;
