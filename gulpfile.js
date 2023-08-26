@@ -110,6 +110,7 @@ function scripts_dev() {
 		.pipe(source('index.min.js'))
 		.pipe(buffer())
 		.pipe(map.init())
+		.pipe(uglify())
 		.pipe(map.write('../sourcemaps'))
 		.pipe(dest('dist/js/'))
         .pipe(bs.stream())
@@ -147,6 +148,7 @@ function scripts_page_implemented_projects() {
 		.pipe(source('index_implemented_projects.min.js'))
 		.pipe(buffer())
 		.pipe(map.init())
+		.pipe(uglify())
 		.pipe(map.write('../sourcemaps'))
 		.pipe(dest('dist/js/'))
         .pipe(bs.stream())
@@ -346,6 +348,11 @@ function bs_html() {
 }
 /** ==============local server================== */
 
+function public() {
+	src('src/public/*')
+		.pipe(dest('dist/public'))
+}
+
 function watching() {
 	watch('src/**/*.html', parallel('html'));
 	watch('src/**/*.scss', parallel('style'));
@@ -395,6 +402,7 @@ exports.fontsComplete = fontsComplete;
 exports.bs_html = bs_html;
 exports.watching = watching;
 exports.php = php;
+exports.public = public;
 // exports.deploy = deploy;
 
 // exports.build = parallel(
@@ -430,5 +438,6 @@ exports.build = parallel(
     rastr,
     html,
     bs_html,
+	public,
     watching,
 );

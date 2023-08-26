@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /*.html$
+Disallow: /js
+Disallow: /css
+Disallow: /svg
+Disallow: /*.php$

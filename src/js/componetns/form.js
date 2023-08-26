@@ -84,7 +84,6 @@ function checkValidField(inputElement) {
 }
 
 async function formSubmitHandler(form) {
-    form.classList.add('form_sending');
     const formData = new FormData(form);
 
     const inputElements = form.querySelectorAll('input');
@@ -101,6 +100,7 @@ async function formSubmitHandler(form) {
 
     if (isAllValid) {
         try {
+            form.classList.add('form_sending');
             let response = await fetch('send_mail.php', {
                 method: 'POST',
                 body: formData
