@@ -1,6 +1,6 @@
 const rootElem = document.querySelector('.root');
 const titleSection = document.querySelector('.main__title');
-const titleText = document.querySelector('.title__text');
+const titleTextWrapp = document.querySelector('.title__text_wrapp');
 const form = document.querySelector('.static-form-wrapp');
 const listRecomendationsWrapper = document.querySelector('.about__recomendations');
 const listRecomendations = document.querySelector('.recomendations__rec-items');
@@ -13,7 +13,7 @@ const scrollUpBtn = document.querySelector('.scroll-up-btn');
 
 const titleSectionHeight = titleSection?.getBoundingClientRect?.()?.height;
 
-titleText.classList.add('title__text-visible');
+titleTextWrapp.classList.add('title__text_wrapp-visible');
 
 const listRecomendationsClientRect = listRecomendationsWrapper.getBoundingClientRect();
 const intersectorClientRect = intersector.getBoundingClientRect();
@@ -22,14 +22,6 @@ let timeThrottleStart = 0;
 const throttleDelay = 100;
 
 checkScrollingElements();
-
-function checkForm() {
-    if (window.scrollY > (titleSectionHeight / 5)) {
-        form.classList.add('static-form-wrapp__visible');
-        return;
-    }
-    form.classList.remove('static-form-wrapp__visible');
-}
 
 function checkListRecomendations() {
     const intersectBottom = intersectorClientRect.top + window.scrollY;
@@ -69,7 +61,6 @@ function checkScrollUpBtn() {
 }
 
 function checkScrollingElements() {
-    checkForm();
     checkAboutCriteries();
     checkListRecomendations();
     checkScrollUpBtn();
