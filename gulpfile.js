@@ -145,7 +145,33 @@ function scripts_page_implemented_projects() {
 		.on('bundle', function(bundle) {
 			cache = bundle
 		})
-		.pipe(source('index_implemented_projects.min.js'))
+		.pipe(source('implemented_projects.min.js'))
+		.pipe(buffer())
+		.pipe(map.init())
+		.pipe(uglify())
+		.pipe(map.write('../sourcemaps'))
+		.pipe(dest('dist/js/'))
+        .pipe(bs.stream())
+}
+
+function scripts_page_services() {
+	return rollup({
+		// Point to the entry file
+		input: 'src/js/pages/services.js',
+		plugins: [babel(), commonjs(), nodeResolve()],
+		cache,
+		output: {
+			// Output bundle is intended for use in browsers
+			// (iife = "Immediately Invoked Function Expression")
+			format: 'iife',
+			// Show source code when debugging in browser
+			sourcemap: true
+		  }
+		})
+		.on('bundle', function(bundle) {
+			cache = bundle
+		})
+		.pipe(source('services.min.js'))
 		.pipe(buffer())
 		.pipe(map.init())
 		.pipe(uglify())
@@ -358,6 +384,7 @@ function watching() {
 	watch('src/**/*.scss', parallel('style'));
 	watch('src/**/*.js', parallel('scripts_dev'));
 	watch('src/**/*.js', parallel('scripts_page_implemented_projects'));
+	watch('src/**/*.js', parallel('scripts_page_services'));
 	watch('src/**/*.json', parallel('html'));
 	watch('src/**/*.php', parallel('php'));
 	watch('src/img/**/*.+(png|jpg|jpeg|gif|svg|ico)', parallel('rastr'));
@@ -391,6 +418,7 @@ exports.libs_style = libs_style;
 // exports.scripts_libs = scripts_libs;
 exports.scripts_dev = scripts_dev;
 exports.scripts_page_implemented_projects = scripts_page_implemented_projects;
+exports.scripts_page_services = scripts_page_services;
 exports.html = html;
 exports.rastr = rastr;
 exports.webp = webp;
@@ -429,6 +457,7 @@ exports.build = parallel(
     // scripts_libs,
     scripts_dev,
 	scripts_page_implemented_projects,
+	scripts_page_services,
 	php,
     ttf,
     fonts,

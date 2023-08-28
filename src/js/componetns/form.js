@@ -1,29 +1,35 @@
 import '../libs/inputmask.min.js';
 const openFormBtnList = document.querySelectorAll('.open-form__btn');
-const fixedFormBg = document.querySelector('.fixed-form-bg'); // обёртка над скрываемой по кнопке формой
+const openableFormWrapp = document.querySelector('.fixed-form-bg'); // обёртка над скрываемой по кнопке формой
 const staticFormWrapp = document.querySelector('.static-form-wrapp'); // обёртка над постоянно включённой формой
+const staticFormWrappServices = document.querySelector('.form__wrapp'); // обёртка над постоянно включённой формой
 
 let isFormFixedOpen = false;
 
-if (staticFormWrapp) {
-    const form = staticFormWrapp.querySelector('.call-form');
+const listFormsWrapp = [staticFormWrapp, staticFormWrappServices];
+listFormsWrapp.forEach(formWrapp => {
+    if (formWrapp) {
+        const form = formWrapp.querySelector('.call-form');
+        addDefaultConfigsForm(form);
+    }
+});
+
+function addDefaultConfigsForm(form) {
     addListenersFormInput(form);
     initInputMask(form);
     addFormSubmitListeners(form);
 }
 
 if (openFormBtnList?.length) {
-    const form = fixedFormBg.querySelector('.call-form');
+    const form = openableFormWrapp.querySelector('.call-form');
     for (let i = 0; i < openFormBtnList.length; i++) {
         const openFormBtn = openFormBtnList[i];
         openFormBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            fixedFormBg.classList.add('fixed-form-bg_visible');
+            openableFormWrapp.classList.add('fixed-form-bg_visible');
             isFormFixedOpen = true;
-            addListenersFormInput(form);
-            addFormSubmitListeners(form);
-            initInputMask(form);
-            addListenersFormCloseBtn(fixedFormBg);
+            addDefaultConfigsForm(form);
+            addListenersFormCloseBtn(openableFormWrapp);
         });
     }
 }
@@ -73,9 +79,9 @@ function toggleListenersFormInput(inputElementsList, isAdd) {
 }
 
 function formCloseBtnHandler() {
-    removeListenersFormCloseBtn(fixedFormBg);
-    removeListenersFormInput(fixedFormBg);
-    fixedFormBg.classList.remove('fixed-form-bg_visible');
+    removeListenersFormCloseBtn(openableFormWrapp);
+    removeListenersFormInput(openableFormWrapp);
+    openableFormWrapp.classList.remove('fixed-form-bg_visible');
     isFormFixedOpen = false;
 }
 

@@ -61,6 +61,7 @@ contactsPopup.addEventListener('click', (e) => {
 const linksByPathNames = {
     '/': 'main_page',
     '/implemented_projects.html': 'implemented_projects',
+    '/services.html': 'services',
 };
 
 const pathname = window.location.pathname;
