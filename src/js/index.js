@@ -1,6 +1,5 @@
-const a = 'Hello world';
-
-function hello() {
-    console.log(a);
-};
-hello()
+import './libs/inputmask.min.js';
+import './componetns/scroll.js';
+import './componetns/form.js';
+import './componetns/header.js';
+import './utils/YMapScript.js';

@@ -1,0 +1,21 @@
+.projects {
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 0;
+        font-size: 30px;
+        @media(max-width: 1024px) {
+            font-size: 24px;
+        }
+        @media(max-width: 816px) {
+            font-size: 20px;
+        }
+        @media(max-width: 480px) {
+            font-size: 18px;
+        }
+        @media(max-width: 360px) {
+            font-size: 16px;
+        }
+    }
+}

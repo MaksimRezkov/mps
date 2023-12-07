@@ -11,7 +11,7 @@ const concat = require('gulp-concat');
 const map = require('gulp-sourcemaps');
 const del = require('del');
 const uglify = require('gulp-uglify-es').default;
-const babel = require('gulp-babel');
+// const babel = require('gulp-babel');
 const bs = require('browser-sync');
 const include = require('gulp-file-include');
 const chalk = require('chalk');
@@ -30,7 +30,7 @@ const ttf2woff2 = require('gulp-ttftowoff2');
 const ttf2woff = require('gulp-ttf2woff');
 const fs = require('fs');
 
-const stylePlugins = []; // пути до стилей библиотек
+const stylePlugins = ['node_modules/swiper/swiper-bundle.min.css']; // пути до стилей библиотек
 const scriptsPlugins = []; // пути до скриптов библиотек
 
 function clear() {
@@ -67,9 +67,9 @@ function libs_style(done) {
     if (stylePlugins.length > 0) {
 		return src(stylePlugins)
 			.pipe(map.init())
-			.pipe(sass({
-				outputStyle: 'compressed'
-			}))
+			// .pipe(sass({
+			// 	outputStyle: 'compressed'
+			// }))
 			.pipe(concat('libs.min.css'))
 			.pipe(map.write('../sourcemaps/'))
 			.pipe(dest('dist/css/'))
@@ -81,36 +81,132 @@ function libs_style(done) {
 /** ===============styles=================== */
 
 /** ===============JS=================== */
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const rollup = require('@rollup/stream');
+const commonjs = require('@rollup/plugin-commonjs');
+const nodeResolve = require('@rollup/plugin-node-resolve');
+const babel = require('@rollup/plugin-babel');
+
+let cache;
+
 function scripts_dev() {
-    return src(['src/components/**/*.js', 'src/js/*.js'])
+	return rollup({
+		// Point to the entry file
+		input: 'src/js/index.js',
+		plugins: [babel(), commonjs(), nodeResolve()],
+		cache,
+		output: {
+			// Output bundle is intended for use in browsers
+			// (iife = "Immediately Invoked Function Expression")
+			format: 'iife',
+			// Show source code when debugging in browser
+			sourcemap: true
+		  }
+		})
+		.on('bundle', function(bundle) {
+			cache = bundle
+		})
+		.pipe(source('index.min.js'))
+		.pipe(buffer())
 		.pipe(map.init())
 		.pipe(uglify())
-        .pipe(babel({
-			presets: ['@babel/env']
-		}))
-		.pipe(concat('main.min.js'))
+		.pipe(map.write('../sourcemaps'))
+		.pipe(dest('dist/js/'))
+        .pipe(bs.stream())
+
+    // return src(['src/js/**/*.js'])
+	// 	.pipe(include())
+	// 	.pipe(map.init())
+	// 	.pipe(uglify())
+    //     .pipe(babel({
+	// 		presets: ['@babel/env']
+	// 	}))
+	// 	.pipe(concat('index.min.js'))
+	// 	.pipe(map.write('../sourcemaps'))
+	// 	.pipe(dest('dist/js/'))
+    //     .pipe(bs.stream())
+}
+
+function scripts_page_implemented_projects() {
+	return rollup({
+		// Point to the entry file
+		input: 'src/js/pages/implemented_projects.js',
+		plugins: [babel(), commonjs(), nodeResolve()],
+		cache,
+		output: {
+			// Output bundle is intended for use in browsers
+			// (iife = "Immediately Invoked Function Expression")
+			format: 'iife',
+			// Show source code when debugging in browser
+			sourcemap: true
+		  }
+		})
+		.on('bundle', function(bundle) {
+			cache = bundle
+		})
+		.pipe(source('implemented_projects.min.js'))
+		.pipe(buffer())
+		.pipe(map.init())
+		.pipe(uglify())
 		.pipe(map.write('../sourcemaps'))
 		.pipe(dest('dist/js/'))
         .pipe(bs.stream())
 }
 
-function scripts_libs(done) {
-    if (scriptsPlugins.length > 0)
-		return src(scriptsPlugins)
-			.pipe(map.init())
-			.pipe(uglify())
-			.pipe(concat('libs.min.js'))
-			.pipe(map.write('../sourcemaps'))
-			.pipe(dest('dist/js/'))
-	else {
-		return done(console.log(chalk.bgYellowBright('No added JS plugins')));
-	}
+function scripts_page_services() {
+	return rollup({
+		// Point to the entry file
+		input: 'src/js/pages/services.js',
+		plugins: [babel(), commonjs(), nodeResolve()],
+		cache,
+		output: {
+			// Output bundle is intended for use in browsers
+			// (iife = "Immediately Invoked Function Expression")
+			format: 'iife',
+			// Show source code when debugging in browser
+			sourcemap: true
+		  }
+		})
+		.on('bundle', function(bundle) {
+			cache = bundle
+		})
+		.pipe(source('services.min.js'))
+		.pipe(buffer())
+		.pipe(map.init())
+		.pipe(uglify())
+		.pipe(map.write('../sourcemaps'))
+		.pipe(dest('dist/js/'))
+        .pipe(bs.stream())
 }
+
+
+// function scripts_libs(done) {
+//     if (scriptsPlugins.length > 0)
+// 		return src(scriptsPlugins)
+// 			.pipe(map.init())
+// 			.pipe(uglify())
+// 			.pipe(concat('libs.min.js'))
+// 			.pipe(map.write('../sourcemaps'))
+// 			.pipe(dest('dist/js/'))
+// 	else {
+// 		return done(console.log(chalk.bgYellowBright('No added JS plugins')));
+// 	}
+// }
 /** ===============JS=================== */
+
+/** ===============PHP=================== */
+function php() {
+	return src('src/**/*.php')
+		.pipe(include())
+		.pipe(dest('dist'))
+    .pipe(bs.stream())
+}
+/** ===============PHP=================== */
 
 /** ===============HTML=================== */
 function html() {
-	return src(['src/**/*.html', '!src/components/html'])
+	return src(['src/**/*.html', '!src/components/**/*.html'])
 		.pipe(include())
 		.pipe(dest('dist'))
         .pipe(bs.stream())
@@ -147,7 +243,7 @@ function rastr() {
 }
 
 function webp() {
-	return src('dist/img/**/*.+(png|jpg|jpeg)')
+	return src('src/img/**/*.+(png|jpg|jpeg)')
 		.pipe(plumber())
 		.pipe(changed('dist/img', {
 			extension: '.webp'
@@ -187,14 +283,7 @@ function svg_sprite() {
 				}
 			]
 		}))
-		.pipe(sprite({
-			mode: {
-				stack: {
-					sprite: '../sprite.svg'
-				}
-			}
-		}))
-		.pipe(dest('src/img'))
+		.pipe(dest('dist/svg'))
 }
 /** ==============images================== */
 
@@ -247,6 +336,15 @@ function fonts(done) {
 	})
 	done();
 }
+
+function fontsComplete(done) {
+	src('src/fonts/**/*.woff2')
+		.pipe(dest('dist/fonts'))
+
+	src('src/fonts/**/*.woff')
+		.pipe(dest('dist/fonts'))
+		done();
+}
 /** ==============fonts================== */
 
 /** ==============local server================== */
@@ -271,16 +369,24 @@ function bs_html() {
 		logLevel: 'info',
 		logConnections: true,
 		logFileChanges: true,
-		open: true
+		open: false
 	})
 }
 /** ==============local server================== */
+
+function public() {
+	src('src/public/*')
+		.pipe(dest('dist/public'))
+}
 
 function watching() {
 	watch('src/**/*.html', parallel('html'));
 	watch('src/**/*.scss', parallel('style'));
 	watch('src/**/*.js', parallel('scripts_dev'));
+	watch('src/**/*.js', parallel('scripts_page_implemented_projects'));
+	watch('src/**/*.js', parallel('scripts_page_services'));
 	watch('src/**/*.json', parallel('html'));
+	watch('src/**/*.php', parallel('php'));
 	watch('src/img/**/*.+(png|jpg|jpeg|gif|svg|ico)', parallel('rastr'));
 	watch('dist/img/**/*.+(png|jpg|jpeg)', parallel('webp'));
 	watch('src/svg/css/**/*.svg', series('svg_css', 'style'));
@@ -309,9 +415,10 @@ function watching() {
 exports.clear = clear;
 exports.style = style;
 exports.libs_style = libs_style;
-// exports.build_js = build_js;
-exports.scripts_libs = scripts_libs;
+// exports.scripts_libs = scripts_libs;
 exports.scripts_dev = scripts_dev;
+exports.scripts_page_implemented_projects = scripts_page_implemented_projects;
+exports.scripts_page_services = scripts_page_services;
 exports.html = html;
 exports.rastr = rastr;
 exports.webp = webp;
@@ -319,22 +426,47 @@ exports.svg_css = svg_css;
 exports.svg_sprite = svg_sprite;
 exports.ttf = ttf;
 exports.fonts = fonts;
+exports.fontsComplete = fontsComplete;
 exports.bs_html = bs_html;
 exports.watching = watching;
+exports.php = php;
+exports.public = public;
 // exports.deploy = deploy;
+
+// exports.build = parallel(
+//     libs_style,
+//     style,
+//     scripts_libs,
+//     scripts_dev,
+//     rastr,
+//     webp,
+//     svg_css,
+//     svg_sprite,
+//     ttf,
+//     fonts,
+// 	fontsComplete,
+//     html,
+//     bs_html,
+//     watching
+// );
 
 exports.build = parallel(
     libs_style,
     style,
-    scripts_libs,
-    scripts_dev,
-    rastr,
-    webp,
     svg_css,
-    svg_sprite,
+    // scripts_libs,
+    scripts_dev,
+	scripts_page_implemented_projects,
+	scripts_page_services,
+	php,
     ttf,
     fonts,
+	fontsComplete,
+    svg_sprite,
+    webp,
+    rastr,
     html,
     bs_html,
-    watching
+	public,
+    watching,
 );
